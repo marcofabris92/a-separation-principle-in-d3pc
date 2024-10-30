@@ -38,7 +38,7 @@ if clx.opt.is_unconstrained
         (prd.ur-prd.u)'*opt.TR*(prd.ur-prd.u);
     prd.reg_cost = prd.beta*norm(prd.gamma2)^2;
 else
-    prd = cvx_sol(clx,dpc,prd,7);
+    prd = cvx_sol(clx,dpc,prd,t,7);
 end
 
 end
