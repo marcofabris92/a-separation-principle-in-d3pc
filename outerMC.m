@@ -197,7 +197,7 @@ end
 fprintf(['    JMPC_j = ' num2str(sol.J) '\n'])
 
 % applying beta2 bar already found
-fprintf('beta2 chosen a-posteriori\n')
+fprintf('beta2 chosen after grid selection\n')
 tStart = tic;
 sol = cl(clx,dpc,2,1,beta2_bar(j));
 exe_time.b2 = toc(tStart);
@@ -212,7 +212,7 @@ n2_gamma12_2_bar(:,j) = sol.n2gamma12;
 fprintf(['    J2_j bar = ' num2str(sol.J) '\n'])
 
 % applying beta3 bar already found
-fprintf('beta3 chosen a-posteriori\n')
+fprintf('beta3 chosen after grid selection\n')
 tStart = tic;
 sol = cl(clx,dpc,3,1,beta3_bar(j));
 exe_time.b3 = toc(tStart);
@@ -228,7 +228,7 @@ gamma3_bar(:,:,j) = sol.gamma3;
 fprintf(['    J3_j bar = ' num2str(sol.J) '\n'])
 
 % applying beta23 bar already found
-fprintf('beta23 chosen a-posteriori\n')
+fprintf('beta23 chosen after grid selection\n')
 tStart = tic;
 sol = cl(clx,dpc,4,1,beta23_bar(:,j)');
 exe_time.b23 = toc(tStart);
@@ -244,7 +244,7 @@ gamma3_23_bar(:,:,j) = sol.gamma3;
 fprintf(['    J23_j bar = ' num2str(sol.J) '\n'])
 
 % applying lambda12 bar already found
-fprintf('lambda12 chosen a-posteriori\n')
+fprintf('lambda12 chosen after grid selection\n')
 tStart = tic;
 sol = cl(clx,dpc,5,1,lmb12_bar(:,j)');
 exe_time.l12 = toc(tStart);
@@ -258,7 +258,7 @@ y1_bar_KF(:,:,j) = sol.yf_hat_star;
 fprintf(['    J1_j bar = ' num2str(sol.J) '\n'])
 
 % FCE tuning strategy
-fprintf('Tuning through PBSIDopt\n')
+fprintf('Tuning through FCE\n')
 tStart = tic;
 sol = cl(clx,dpc,6,1,[]);
 exe_time.O = toc(tStart);
@@ -273,7 +273,7 @@ beta_FCE(:,j) = sol.beta_FCE;
 fprintf(['    JFCE_j tuned = ' num2str(sol.J) '\n'])
 
 % best regularization according to Theorem 3
-fprintf('Tuning for best regularization\n')
+fprintf('Tuning with Theorem 3\n')
 tStart = tic;
 sol = cl(clx,dpc,7,1,[]);
 exe_time.S = toc(tStart);
