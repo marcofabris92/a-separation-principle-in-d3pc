@@ -23,8 +23,10 @@ clx.sys = sys;
 
 
 % i-th grid optimization for beta2 and beta3 (gamma-DDPC)
+%fprintf('\ngrid optimization for beta2 and beta3\n')
 tStart = tic;
-parfor i = 1:Lpts
+
+parfor i = 1:Lpts % parfor
     if mod(i,1000) == 0 % just to show iterations (reduce that 1000)
         fprintf(['i = ' num2str(i) '\n'])
     end
@@ -37,9 +39,11 @@ exe_time.b2and3g = exe_time.b2and3g + toc(tStart);
 
 
 % joint i1-i2-th grid optimization for beta2 and beta3 (gamma-DDPC)
+%fprintf('\njoint grid optimization for beta23\n')
+
 I2 = 1:length(idx2);
 tStart = tic;
-parfor i1 = 1:length(idx1)
+parfor i1 = 1:length(idx1) % parfor
     for i2 = I2
         sol = cl(clx,dpc,4,0,[clx.beta2_(i1) clx.beta3_(i2)]);
         J23_grid(i1,i2,j) = J23_grid(i1,i2,j) + sol.J;
@@ -49,9 +53,10 @@ exe_time.b23g = exe_time.b23g + toc(tStart);
 
 
 % joint i1-i2-th grid optimization for lambda1 and lambda2 (DeePC)
+%fprintf('\ngrid optimization for DeePC\n')
 I2 = 1:length(idx_2);
 tStart = tic;
-parfor i1 = 1:length(idx_1)
+parfor i1 = 1:length(idx_1) % parfor
     for i2 = I2
         %[clx.lmb1_(i1) clx.lmb2_(i2)]
         sol = cl(clx,dpc,5,0,[clx.lmb1_(i1) clx.lmb2_(i2)]);

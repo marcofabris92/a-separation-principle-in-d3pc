@@ -120,11 +120,11 @@ switch type
         L33_inv = dpc.L33^-1;
     case 6 
         if eb
-            sol.beta_o = zeros(1,Tv);
+            sol.beta_FCE = zeros(1,Tv);
         end
     case 7
         if eb
-            sol.betaS_tuned = zeros(1,Tv);
+            sol.beta_thm3 = zeros(1,Tv);
         end
 end
 
@@ -180,10 +180,12 @@ for t = 1:Tv
     %% SPECIFIC ASSIGNMENT
     % assigning interesting quantities depending on "type"
     if ddpc_approach
-        if type ~= 5 && type ~= 6
+        if type ~= 5 && type ~= 6 && type ~= 7
             sol.n2gamma12(t) = norm([prd.gamma1; prd.gamma2])^2;
         end
         if MPC_comp
+            prd_KF_comp.ur = prd.ur;
+            prd_KF_comp.yr = prd.yr;
             prd_KF_comp = ol_MPC(clx,xini,prd_KF_comp,prd.u,t);
             sol.yf_hat_star(:,t) = prd_KF_comp.y;
         end
@@ -206,11 +208,11 @@ for t = 1:Tv
             sol.gamma3(:,t) = prd.gamma3;
         case 6
             if eb
-                sol.beta_o(t) = prd.beta;
+                sol.beta_FCE(t) = prd.beta;
             end
         case 7
             if eb
-                sol.betaS_tuned(t) = prd.beta;
+                sol.beta_thm3(t) = prd.beta;
             end
     end
     %% UPDATE
@@ -267,7 +269,7 @@ switch type
     case 5
         prd = ol_DeePC(clx,dpc,prd,t);
     case 6
-        prd = ol_FCE(clx,prd,t);
+        prd = ol_FCE(clx,dpc,prd,t);
     case 7
         prd = ol_thm3(clx,dpc,prd,t);
 end

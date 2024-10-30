@@ -16,7 +16,7 @@
 % Invokes: none
 
 
-function [prd] = ol_FCE(clx,prd,t)
+function [prd] = ol_FCE(clx,dpc,prd,t)
 
 opt = clx.opt;
 pbs = clx.pbs;

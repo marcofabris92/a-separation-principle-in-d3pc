@@ -73,7 +73,7 @@ training{i} = [atr str];
 offline_search{i} = [a(4) s(4)];
 optimization{i} = [a(8) s(8)];
 
-% opt
+% FCE
 i = i + 1;
 atr = a(14)+a(18);
 str = sqrt(((atr-etw6(14)-etw6(18)).^2+...
@@ -84,7 +84,7 @@ training{i} = [atr str];
 offline_search{i} = [NaN];
 optimization{i} = [a(9) s(9)];
 
-% thm2 (subopt)
+% Thm3
 i = i + 1;
 atr = a(15)+a(18);
 str = sqrt(((atr-etw6(15)-etw6(18)).^2+...
