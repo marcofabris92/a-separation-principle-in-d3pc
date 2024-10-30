@@ -3,10 +3,10 @@ Code reproducing the numerical results in Section 7 of the research article "Har
 
 __________________________________________________________________________
 Authors:
-- Prof. Alessandro Chiuso* Univ. of Padua      <alessandro.chiuso@unipd.it>
-- Dr.   Marco Fabris**     Univ. of Padua         <marco.fabris.1@unipd.it>
-- Prof. Valentina Breschi  Eindhoven Univ. of Technology <v.breschi@tue.nl>
-- Prof. Simone Formentin   Polit. di Milano    <simone.formentin@polimi.it>
+- Prof. Alessandro Chiuso*, University of Padua,      <alessandro.chiuso@unipd.it>
+- Dr.   Marco Fabris**,     University of Padua,         <marco.fabris.1@unipd.it>
+- Prof. Valentina Breschi,  Eindhoven University of Technology, <v.breschi@tue.nl>
+- Prof. Simone Formentin,   Politecnico di Milano,    <simone.formentin@polimi.it>
 
  \* A. Chiuso is the main algorithm developer of these Matlab scripts.
  
