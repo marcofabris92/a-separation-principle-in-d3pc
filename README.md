@@ -7,8 +7,8 @@ Authors:
 - Prof. Valentina Breschi  Eindhoven Univ. of Technology <v.breschi@tue.nl>
 - Prof. Simone Formentin   Polit. di Milano    <simone.formentin@polimi.it>
 
-* A. Chiuso is the main algorithm developer of these Matlab scripts.
-** M. Fabris is the main software developer of these MatLab scripts.
+ * A. Chiuso is the main algorithm developer of these Matlab scripts.
+ ** M. Fabris is the main software developer of these MatLab scripts.
 
 Research Article submitted to the journal "Automatica", ID: 23-1641
 Publication history:
