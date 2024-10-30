@@ -255,7 +255,7 @@ prd.beta = 0;
 
 switch type
     case 0
-        prd = ol_GT(clx,dpc,prd);
+        prd = ol_GT(clx,dpc,prd,t);
     case 1
         prd = ol_MPC(clx,xini,prd,[],t);
     case 2
