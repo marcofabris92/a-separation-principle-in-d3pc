@@ -86,8 +86,8 @@ opt.TQ12 = chol(opt.TQ);
 opt.W12 = blkdiag(opt.TR12,opt.TQ12);
 
 % references
-sys.TvT = clx.Tv+opt.T-1;                 	  % reference dimension
-opt.ur = zeros(sys.m,sys.TvT);                % input reference
+sys.TvT = clx.Tv+opt.T-1;                 	   % reference dimension
+opt.ur = zeros(sys.m,sys.TvT);                 % input reference
 %opt.yr = sin((5*pi/(sys.TvT-1))*(1:sys.TvT)); % an old output reference
                                                % used in [7] and [9]
 
