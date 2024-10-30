@@ -10,6 +10,7 @@
 % - the prediction parameters and references contained in prd
 % - the hyperparameter beta = beta2, if beta2 has been fixed; beta = [],
 %   if beta2 needs to be tuned with the strategy proposed in [9]
+% - the discrete time instant t-1 (i.e. t-th iteration of the closed-loop)
 
 % Invoked by: 
 % - ol() in cl.m, to be started
@@ -43,7 +44,7 @@ if clx.opt.is_unconstrained
     end
     prd = prd_uy(dpc,prd);
 else 
-    prd = cvx_sol(clx,dpc,prd,2);
+    prd = cvx_sol(clx,dpc,prd,t,2);
 end
 
 end

@@ -12,6 +12,7 @@
 % - the hyperparameter beta = [beta2 beta3], if [beta2 beta3] have been 
 %   fixed; beta = [], if [beta2 beta3] need to be tuned with the 
 %   strategy proposed in [7]
+% - the discrete time instant t-1 (i.e. t-th iteration of the closed-loop)
 
 % Invoked by: 
 % - ol() in cl.m, to be started
@@ -88,7 +89,7 @@ if clx.opt.is_unconstrained
     end
     prd = prd_uy(dpc,prd);
 else 
-    prd = cvx_sol(clx,dpc,prd,4);
+    prd = cvx_sol(clx,dpc,prd,t,4);
 end
 
 end

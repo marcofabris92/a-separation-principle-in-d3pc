@@ -9,6 +9,7 @@
 % - the closed-loop variables, parameters and settings contained in clx
 % - the parameters related to the given data set contained in dpc
 % - the prediction parameters and references contained in prd
+% - the discrete time instant t-1 (i.e. t-th iteration of the closed-loop)
 
 % Invoked by: 
 % - ol() in cl.m, to be started (whenever the GT is optionally required)
@@ -18,13 +19,13 @@
 % - z_star.m, to compute gamma2
 
 
-function [prd] = ol_GT(clx,dpc,prd)
+function [prd] = ol_GT(clx,dpc,prd,t)
 
 if clx.opt.is_unconstrained
     prd.gamma2 = pinv(clx.W_star)*z_star(clx,dpc,prd);
     prd = prd_uy(dpc,prd); 
 else
-    prd = cvx_sol(clx,dpc,prd,0);
+    prd = cvx_sol(clx,dpc,prd,t,0);
 end
 
 end

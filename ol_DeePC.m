@@ -9,6 +9,7 @@
 % - the parameters related to the given data set contained in dpc
 % - the prediction parameters and references contained in prd
 % - the optimization parameters and references contained in opt
+% - the discrete time instant t-1 (i.e. t-th iteration of the closed-loop)
 
 % Invoked by: 
 % - ol() in cl.m, to be started
@@ -40,7 +41,7 @@ else
     % careful: not sure this works correctly (CVX code is still under 
     % development; certainly the case in which lambda1 = +Inf is not 
     % handled yet)
-    prd = cvx_sol(clx,dpc,prd,5);
+    prd = cvx_sol(clx,dpc,prd,t,5);
 end
 
 end

@@ -12,6 +12,7 @@
 % - the prediction parameters and references contained in prd
 % - the possibility to force an input u, which can be set to [] 
 %   if not needed
+% - the discrete time instant t-1 (i.e. t-th iteration of the closed-loop)
 
 % Invoked by: 
 % - cl.m, to run a comparison with the classic MPC, as if the input u
@@ -45,9 +46,9 @@ if opt.is_unconstrained
     prd.y = prd.y + sys.Hd*prd.u;
 else
     if isempty(u)
-        prd = cvx_sol(clx,[],prd,1);
+        prd = cvx_sol(clx,[],prd,t,1);
     else
-        prd = cvx_sol(clx,[],prd,-1);
+        prd = cvx_sol(clx,[],prd,t,-1);
     end
 end
 

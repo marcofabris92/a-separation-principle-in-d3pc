@@ -9,6 +9,7 @@
 % Given
 % - the closed-loop variables, parameters and settings contained in clx
 % - the prediction parameters and references contained in prd
+% - the discrete time instant t-1 (i.e. t-th iteration of the closed-loop)
 
 % Invoked by: 
 % - ol() in cl.m, to be started
@@ -34,7 +35,7 @@ else
     pbs.yc = y_constant;
     pbs.yp = y_past;
     clx.pbs = pbs;
-    prd = cvx_sol(clx,dpc,prd,6);
+    prd = cvx_sol(clx,dpc,prd,t,6);
 end
 
 
