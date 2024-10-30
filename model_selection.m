@@ -149,8 +149,6 @@ for t = 1:clx.Tv
 end
 
 % stacked references
-sys.p
-sys.TvT
 opt.vec_ur = reshape(opt.ur,[sys.m*sys.TvT,1]);
 opt.vec_yr = reshape(opt.yr,[sys.p*sys.TvT,1]);
 
