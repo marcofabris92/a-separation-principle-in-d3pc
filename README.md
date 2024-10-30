@@ -2,10 +2,10 @@
 Code reproducing the numerical results in Section 7 of the research article "Harnessing Uncertainty for a Separation Principle in Direct Data-Driven Predictive Control"
 
 Authors:
-Prof. Alessandro Chiuso* Univ. of Padua      <alessandro.chiuso@unipd.it>
-Dr.   Marco Fabris**     Univ. of Padua         <marco.fabris.1@unipd.it>
-Prof. Valentina Breschi  Eindhoven Univ. of Technology <v.breschi@tue.nl>
-Prof. Simone Formentin   Polit. di Milano    <simone.formentin@polimi.it>
+- Prof. Alessandro Chiuso* Univ. of Padua      <alessandro.chiuso@unipd.it>
+- Dr.   Marco Fabris**     Univ. of Padua         <marco.fabris.1@unipd.it>
+- Prof. Valentina Breschi  Eindhoven Univ. of Technology <v.breschi@tue.nl>
+- Prof. Simone Formentin   Polit. di Milano    <simone.formentin@polimi.it>
 
 * A. Chiuso is the main algorithm developer of these Matlab scripts.
 ** M. Fabris is the main software developer of these MatLab scripts.
