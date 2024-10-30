@@ -256,7 +256,7 @@ y1_bar_TR(:,:,j) = sol.yf;
 y1_bar_KF(:,:,j) = sol.yf_hat_star;
 fprintf(['    J1_j bar = ' num2str(sol.J) '\n'])
 
-% PBSIDopt tuning strategy
+% FCE tuning strategy
 fprintf('Tuning through PBSIDopt\n')
 tStart = tic;
 sol = cl(clx,dpc,6,1,[]);
@@ -271,7 +271,7 @@ y_FCE_KF(:,:,j) = sol.yf_hat_star;
 beta_FCE(:,j) = sol.beta_o;
 fprintf(['    JFCE_j tuned = ' num2str(sol.J) '\n'])
 
-% best regularization
+% best regularization according to Theorem 3
 fprintf('Tuning for best regularization\n')
 tStart = tic;
 sol = cl(clx,dpc,7,1,[]);
