@@ -269,7 +269,7 @@ y_FCE(:,:,j) = sol.yf_hat;
 y_FCE_TR(:,:,j) = sol.yf;
 y_FCE_KF(:,:,j) = sol.yf_hat_star;
 beta_FCE(:,j) = sol.beta_o;
-fprintf(['    Jo_j tuned = ' num2str(sol.J) '\n'])
+fprintf(['    JFCE_j tuned = ' num2str(sol.J) '\n'])
 
 % best regularization
 fprintf('Tuning for best regularization\n')
@@ -285,7 +285,7 @@ y_thm4_tuned_TR(:,:,j) = sol.yf;
 y_thm4_tuned_KF(:,:,j) = sol.yf_hat_star;
 n2_gamma12_thm4_tuned(:,j) = sol.n2gamma12;
 beta_thm4_tuned(:,j) = sol.betaS_tuned;
-fprintf(['    JS_j tuned = ' num2str(sol.J) '\n'])
+fprintf(['    Jthm3_j tuned = ' num2str(sol.J) '\n'])
 
 % beta2 tuning strategy
 fprintf('Tuning of beta2\n')
