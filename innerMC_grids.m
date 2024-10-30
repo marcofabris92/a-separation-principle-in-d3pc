@@ -40,7 +40,6 @@ exe_time.b2and3g = exe_time.b2and3g + toc(tStart);
 
 % joint i1-i2-th grid optimization for beta2 and beta3 (gamma-DDPC)
 %fprintf('\njoint grid optimization for beta23\n')
-
 I2 = 1:length(idx2);
 tStart = tic;
 parfor i1 = 1:length(idx1) % parfor
