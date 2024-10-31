@@ -8,7 +8,7 @@ Authors:
 - Prof. Valentina Breschi,  Eindhoven University of Technology, <v.breschi@tue.nl>
 - Prof. Simone Formentin,   Politecnico di Milano,    <simone.formentin@polimi.it>
 
- \* A. Chiuso is the main algorithm developer of these Matlab scripts.
+ \* A. Chiuso is the main algorithm developer of these MatLab scripts.
  
  \** M. Fabris is the main software developer of these MatLab scripts.
 
@@ -32,7 +32,7 @@ This script and the remaining functions are documented at the beginning
 of each code fragment.
 
 
---- Description of the most relevant files of this package ---
+--- Description of the most relevant files of this repository ---
 
 __________________________________________________________________________
 (1) MAIN.m 
