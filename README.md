@@ -41,7 +41,7 @@ This script starts the numerical simulations presented in this paper,
 based on a Monte Carlo experiments to test the compared control methods
 over closed-loop dynamics.
 Some parameters in it must be selected by the user.
-Important: to replicate the same results of showed in Figures 1 and 2
+Important: to replicate the same results shown in Figures 1 and 2
 one has to set sys.kind_of_setup = 0 first (this action reproduces
 Setups 1 and 2) and then set sys.kind_of_setup = 1 (this action 
 reproduces Setup 3). 
