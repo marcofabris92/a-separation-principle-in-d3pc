@@ -88,7 +88,7 @@ This function executes the closed-loop dynamics.
 __________________________________________________________________________
 (8) dynamics.m, sys_noise.m
 
-These functions exectute the open-loop dynamics or single updates by
+These functions execute the open-loop dynamics or single updates by
 possibily adding process and/or output noise.
 
 __________________________________________________________________________
