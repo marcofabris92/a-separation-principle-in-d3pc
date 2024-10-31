@@ -11,7 +11,7 @@
 % - the prediction parameters and references contained in prd
 % - the discrete time instant t-1 (i.e. t-th iteration of the closed-loop)
 % - type: an integer that determines which appraoch should be used (see
-%   below, at the beginning of cl()
+%   below)
 
 % Invoked by:
 % - ol_2.m
@@ -24,11 +24,7 @@
 % - ol_thm3.m
 % Invokes: none
 
-% modifiche
-% - cvx_sol
-% - cl
-% - ol_FCE
-% - MAIN, outerMC, table_ex_times modifica thm3 e FCE
+
 function [prd] = cvx_sol(clx,dpc,prd,t,type)
 
 global cvx_sol_time cvx_sol_counter
@@ -42,49 +38,46 @@ pT = opt.pT;
 zmT = zeros(mT,1);
 zpT = zeros(pT,1);
 
-% cost functional
+% cost functional (general)
 Ucost = "+(prd.ur-uf)'*opt.TR*(prd.ur-uf)";
 Ycost = "+(prd.yr-yf_hat)'*opt.TQ*(prd.yr-yf_hat)";
 fnct = strcat(Ucost,Ycost);
-Ucost_DeePC = "+(prd.ur-dpc.Uf*g)'*opt.TR*(prd.ur-dpc.Uf*g)";
-Ycost_DeePC = "+(prd.yr-dpc.Yf*g)'*opt.TQ*(prd.yr-dpc.Yf*g)";
-fnct_DeePC = strcat(Ucost_DeePC,Ycost_DeePC);
 
-% the three regularization added to the cost functional
+% KF-based MPC oracle constraint
+kf_io = "yf_hat == prd.y+clx.sys.Hd*uf;";
+
+% gamma-ddpc constraints
+data_uf = "uf == dpc.L21*prd.gamma1+dpc.L22*gamma2;";
+data_yf_hat = "yf_hat == dpc.L31*prd.gamma1+dpc.L32*gamma2";
+data_yf_hat33 = "+dpc.L33*gamma3";
+
+% the three regularization added to the cost functional for gamma-ddpc
 reg2 = "+prd.beta*gamma2'*gamma2";
 reg3 = "+prd.beta*gamma3'*gamma3";
 gamma2z = "gamma2 == zmT;";
 gamma3z = "gamma3 == zpT;";
-if type == 4
+if type == 4 % for the approach with both beta2 and beta3
     reg2 = "+prd.beta(1)*gamma2'*gamma2";
     reg3 = "+prd.beta(2)*gamma3'*gamma3";
 end
-reg1Pi = "+prd.lmb1*g'*dpc.IPi2*g+prd.lmb2*sum(q)";
 
-if type == 5 % for DeePC
-    if prd.lmb1 == +Inf
-        reg1Pi = "+prd.lmb2*sum(q)";
-    end
-end
-
-% ddpc constraints
-data_uf = "uf == dpc.L21*prd.gamma1+dpc.L22*gamma2;";
-data_yf_hat = "yf_hat == dpc.L31*prd.gamma1+dpc.L32*gamma2";
-data_yf_hat33 = "+dpc.L33*gamma3";
+% DeePC cost functional
+Ucost_DeePC = "+(prd.ur-dpc.Uf*g)'*opt.TR*(prd.ur-dpc.Uf*g)";
+Ycost_DeePC = "+(prd.yr-dpc.Yf*g)'*opt.TQ*(prd.yr-dpc.Yf*g)";
+fnct_DeePC = strcat(Ucost_DeePC,Ycost_DeePC);
 % DeePC constraint "[prd.zini; uf; yf_hat] == dpc.H*g" becomes:
 data_trajectories_past = "prd.zini == dpc.Zp*g;";
 data_trajectories_additional = "zeros(dpc.N,1) == dpc.IPi*g;";
-
-
-% KF-based oracle constraint
-kf_io = "yf_hat == prd.y+clx.sys.Hd*uf;";
-
 % 1-norm constraints
 one_norm_plus = "g <= q;";
 one_norm_minus = "-g <= q;";
+% DeePC regularizers
+reg1Pi = "+prd.lmb1*g'*dpc.IPi2*g+prd.lmb2*sum(q)";
+if type == 5 && prd.lmb1 == +Inf % for DeePC, when lambda1 == +Inf
+    reg1Pi = "+prd.lmb2*sum(q)";
+end
 
-
-% FCE
+% FCE cost and regularizer
 pbs = [];
 yrzini = [];
 if type == 6 % for FCE
@@ -92,20 +85,19 @@ if type == 6 % for FCE
     yrzini = [prd.yr; prd.zini];
 end
 YcostFCE = "+(pbs.yc-pbs.PsiU_hat*uf)'*pbs.Q*(pbs.yc-pbs.PsiU_hat*uf)";
-reg_FCE = "+clx.beta_0*[yrzini' uf']*pbs.LambdaDopt*[yrzini; uf]";
 fnct_FCE = strcat(Ucost,YcostFCE);
+reg_FCE = "+clx.beta_0*[yrzini' uf']*pbs.LambdaDopt*[yrzini; uf]";
 
-% thm3
+% Thm3 regularizer
 Reg_Thm3 = [];
 if type == 7 % for Theorem 3
     r1 = length(prd.gamma1);
     Reg_Thm3 = prd.Reg_Thm3(r1+1:end,r1+1:end);
 end
-Ycostthm3 = "+(prd.yr-yf_hat)'*opt.TQ*(prd.yr-yf_hat)";
-fnct_thm3 = strcat(Ucost,Ycostthm3);
 reg_thm3 = "+gamma2'*Reg_Thm3*gamma2";
 
-fprintf(['Solving type = ' num2str(type) ',  t = ' num2str(t) '\n'])
+
+%fprintf(['Solving type = ' num2str(type) ',  t = ' num2str(t) '\n'])
 
 try
     
@@ -276,13 +268,15 @@ switch type
     case 7 % invoked by ol_thm3.m
         cvx_begin quiet
         variables gamma2(mT) uf(mT) yf_hat(pT)
-        minimize(eval(strcat(fnct_thm3,reg_thm3)))
+        minimize(eval(strcat(fnct,reg_thm3)))
         subject to
+        eval(data_uf);
+        eval(strcat(data_yf_hat,';'));
         eval(opt.set_cnstr);
         cvx_end
 end
 
-% Remove 'quiete' after cvx_begin to inspection the following quantities:
+% Remove 'quiet' after cvx_begin to inspection the following quantities:
 % cvx_slvitr
 % cvx_status
 

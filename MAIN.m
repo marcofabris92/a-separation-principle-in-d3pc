@@ -89,6 +89,7 @@ fig_counter = 1-nfigs;
 
 %% activation of CVX for more complicated cases 
 %  CVX was not used in our simulations, but it can be useful in general
+% if you wish to solve constrained problems
 % run ../cvx_startup.m (where .. has to be replaced with the correct path)
 % cvx_solver sedumi % SDPT3
 % cvx_precision best % low % medium % default % high % best
@@ -100,6 +101,7 @@ fig_counter = 1-nfigs;
 % sys - contains info about the system model
 % opt - contains info about the optimization parameters and cost functions
 % clx - contains generic variables that need to be transferred to other
+% dpc - contains variables and parameters related to ddpc approaches
 %    MATLAB functions during the optimization process
 
 NMC = 1e2;                      % # of Monte Carlo samples (outer)
@@ -116,6 +118,15 @@ opt.I_T = eye(opt.T);           % identity matrix of dimension T
 opt.O_T = zeros(opt.T);         % zero matrix of dimension T
 
 opt.set_cnstr = '';             % list of set constraints for uf and yf_hat
+                                % To write the constraints you should use
+                                % the following syntax:
+                                % opt.set_cnstr = ['constraint_1;',...
+                                %                  'constraint_2;',...
+                                %                        .
+                                %                        .
+                                %                        .
+                                %                  'contraint_n-1;',...
+                                %                  'contraint_n;'];
 opt.is_unconstrained = isempty(opt.set_cnstr);
 
 % beta
