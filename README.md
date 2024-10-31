@@ -123,7 +123,7 @@ constructed step by step.
 __________________________________________________________________________
 (12) reg_weight.m
 
-This subroutine has a simular task with respect to pbsidopt_ini.m at 
+This subroutine fulfills a similar task with respect to pbsidopt_ini.m at 
 computing the regularization term according to the approximation 
 discussed in Theorem 3.
 
