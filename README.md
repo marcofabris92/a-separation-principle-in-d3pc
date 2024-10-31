@@ -100,9 +100,8 @@ techniques, except for ol_MPC.m. The latter is a Kalman-based oracle to
 show the best performance pretending to know the "true" model.
 Alternatively, one may run cvx_sol.m to solve constrained optimization
 problems through CVX. 
-Caution: cvx_sol.m is still under development; so, do not fully rely on 
-it. It may contain bugs and it could be very inefficient in certain
-situations.
+Caution: cvx_sol.m could be very inefficient in certain situations. Also,
+this piece of code has not been sufficiently tested by the authors.
 
 __________________________________________________________________________
 (10) dpc_ini.m
