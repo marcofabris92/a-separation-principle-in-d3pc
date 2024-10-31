@@ -120,7 +120,7 @@ opt.is_unconstrained = isempty(opt.set_cnstr);
 
 % beta
 beta_0s = [0.01 0.025 0.05 0.1 0.25 0.5 1 2.5 5 10];
-clx.beta_0 = beta_0s(7);        % adjustment for FCE regularization
+clx.beta_0 = 1;                 % adjustment for FCE regularization
 if clx.beta_0 == +Inf
     error("The case clx.beta_0 == +Inf has not been solved yet\n")
 end
