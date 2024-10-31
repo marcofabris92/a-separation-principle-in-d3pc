@@ -14,6 +14,7 @@ Authors:
 
 __________________________________________________________________________
 Research Article submitted to the journal "Automatica", ID: 23-1641
+
 Publication history:
 - first submission: December 23rd, 2023
 - second submission: August 2nd, 2024
