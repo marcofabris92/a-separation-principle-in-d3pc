@@ -95,7 +95,7 @@ __________________________________________________________________________
 (9) ol_XXXXX.m / cvx_sol.m
 
 The files ol_XXXXX.m encode the compared predictive control strategies.
-All these methods can be categorized are data-drive predictive control
+All these methods can be categorized as data-drive predictive control
 techniques, except for ol_MPC.m. The latter is a Kalman-based oracle to 
 show the best performance pretending to know the "true" model.
 Alternatively, one may run cvx_sol.m to solve constrained optimization
