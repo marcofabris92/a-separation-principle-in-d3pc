@@ -65,7 +65,7 @@ This function has two purposes:
 __________________________________________________________________________
 (4) rho_selection.m
 
-This function selects the model order $\rho$ at each Monte Carlo run,
+This function selects the model order $\hat{\rho}$ at each Monte Carlo run,
 according to some criterion (e.g. the corrected AIC).
 
 __________________________________________________________________________
