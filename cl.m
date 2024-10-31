@@ -7,7 +7,7 @@
 % - the closed-loop variables, parameters and settings contained in clx
 % - the parameters related to the given data set contained in dpc
 % - type: an integer that determines which appraoch should be used (see
-%   below, at the beginning of cl()
+%   below), at the beginning of cl()
 % - MPC_comp, a flag = 1 if the comparison with standard MPC is required, 
 %   given the same input signal computed through any other data-driven
 %   approach
