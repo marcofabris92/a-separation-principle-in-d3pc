@@ -30,7 +30,7 @@ Model Predictive Control (MPC) is a powerful method for complex system regulatio
 
 
 This script and the remaining functions are documented at the beginning
-of each code fragment.
+of each code fragment. Language used: MatLab (version 2021a).
 
 
 --- Description of the most relevant files of this repository ---
