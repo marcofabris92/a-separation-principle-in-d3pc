@@ -21,6 +21,10 @@ Publication history:
 - accepted on: October 3rd, 2024
 - last submission: October 31st, 2024
 
+Link to the paper: https://www.sciencedirect.com/science/article/pii/S0005109824005636
+
+In this repository you can also find a zipped folder containing the code of our IFAC 23 paper "Uncertainty-aware data-driven predictive control in a stochastic setting", link: https://www.sciencedirect.com/science/article/pii/S2405896323012582
+
 __________________________________________________________________________
 Abstract:
 
